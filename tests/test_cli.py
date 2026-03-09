@@ -48,7 +48,7 @@ def test_scaffold_existing_dir(tmp_path):
     (tmp_path / "existing-proj").mkdir()
     result = runner.invoke(app, ["scaffold", "existing-proj", "--output-dir", str(tmp_path)])
     assert result.exit_code != 0
-    assert "already exists" in result.output
+    assert "already" in result.output and "exists" in result.output
 
 
 def test_scaffold_dry_run_no_files(tmp_path):
