@@ -35,9 +35,7 @@ def scaffold(
     project_name: Annotated[
         str, typer.Argument(help="Name of the new project (kebab-case recommended)")
     ],
-    template: Annotated[
-        str, typer.Option("--template", "-t", help="Template to use")
-    ] = "minimal",
+    template: Annotated[str, typer.Option("--template", "-t", help="Template to use")] = "minimal",
     output_dir: Annotated[
         Path | None, typer.Option("--output-dir", "-o", help="Parent directory for the new project")
     ] = None,

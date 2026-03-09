@@ -71,9 +71,7 @@ def export_to_entropy_table(
 
 _genesis: dict = copy.deepcopy(MINIMAL_TEMPLATE)
 _genesis["name"] = "genesis"
-_genesis["description"] = (
-    "GenesisAeon project with domain/metrics YAML and entropy-table bridge"
-)
+_genesis["description"] = "GenesisAeon project with domain/metrics YAML and entropy-table bridge"
 _genesis["variables"] = MINIMAL_TEMPLATE["variables"] + ["metrics"]
 _genesis["defaults"] = {
     **MINIMAL_TEMPLATE["defaults"],

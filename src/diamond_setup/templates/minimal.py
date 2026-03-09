@@ -126,9 +126,7 @@ jobs:
       - run: uv run ruff check .
       - run: uv run pytest
 """,
-        "src/${name_snake}/__init__.py": (
-            '"""${name}."""\n\n__version__ = "0.1.0"\n'
-        ),
+        "src/${name_snake}/__init__.py": ('"""${name}."""\n\n__version__ = "0.1.0"\n'),
         "tests/__init__.py": "",
         "tests/test_main.py": """\
 \"\"\"Tests for ${name}.\"\"\"
