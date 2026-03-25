@@ -1,42 +1,52 @@
-# Quickstart – diamond-setup
+# Quick Start
 
-**Installiere sofort:**
+## Installation
 
 ```bash
-pip install diamond-setup
-# oder für Entwicklung:
+pip install <package-name>
+```
+
+## Development Setup
+
+```bash
+git clone https://github.com/GenesisAeon/<repo-name>.git
+cd <repo-name>
 pip install -e ".[dev]"
-# empfohlen: mit uv
-uv add diamond-setup
 ```
 
-**Minimal-Beispiel (läuft in < 10 Sekunden):**
+## Running Tests
 
 ```bash
-# Neues Python-Projekt scaffolden
-diamond new my-project
-
-# Mit Preset
-diamond new my-project --preset science
-
-# Vorhandenes Verzeichnis validieren
-diamond validate .
+pytest --cov=src
 ```
 
-**Python-API:**
+## Linting
 
-```python
-from diamond_setup import scaffold
-
-scaffold("my-project", preset="default")
+```bash
+ruff check src tests
+mypy src
 ```
 
-**Weiter:**
+## Building Docs
 
-- Vollständige Docs → `docs/` oder MkDocs-Site
-- Verfügbare Presets → `diamond presets`
-- Zitieren → siehe `CITATION.cff` oder Zenodo-DOI
+```bash
+mkdocs serve
+```
 
-**Contributing**
+## Release
 
-Siehe `CONTRIBUTING.md` – wir lieben fraktale PRs!
+Tag a commit to trigger the automated release workflow:
+
+```bash
+git tag v0.1.0
+git push origin v0.1.0
+```
+
+The release workflow will:
+1. Build the wheel + sdist
+2. Publish to PyPI via Trusted Publishing (no token needed)
+3. Create a GitHub Release with auto-generated notes
+4. Trigger Zenodo archival (configure `ZENODO_TOKEN` secret)
+
+---
+*Propagated from [diamond-setup](https://github.com/GenesisAeon/diamond-setup) v0.3.0.*
