@@ -23,7 +23,9 @@ def _python_version_nodot(version: str) -> str:
     return version.replace(".", "")
 
 
-def _build_context(project_name: str, template: TemplateDict, overrides: dict[str, str | None]) -> dict[str, str]:
+def _build_context(
+    project_name: str, template: TemplateDict, overrides: dict[str, str | None]
+) -> dict[str, str]:
     """Merge defaults, user overrides and derived variables into a render context."""
     ctx: dict[str, str] = {
         "name": project_name,
