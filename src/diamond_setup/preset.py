@@ -6,6 +6,8 @@ import re
 from pathlib import Path
 from string import Template
 
+from ._types import TemplateDict
+
 
 class TemplateError(Exception):
     """Raised when template rendering fails."""
@@ -21,7 +23,7 @@ def _python_version_nodot(version: str) -> str:
     return version.replace(".", "")
 
 
-def _build_context(project_name: str, template: dict, overrides: dict) -> dict[str, str]:
+def _build_context(project_name: str, template: TemplateDict, overrides: dict[str, str | None]) -> dict[str, str]:
     """Merge defaults, user overrides and derived variables into a render context."""
     ctx: dict[str, str] = {
         "name": project_name,
@@ -41,9 +43,9 @@ def _render(content: str, ctx: dict[str, str]) -> str:
 
 def scaffold(
     project_name: str,
-    template: dict,
+    template: TemplateDict,
     output_dir: Path,
-    overrides: dict | None = None,
+    overrides: dict[str, str | None] | None = None,
     dry_run: bool = False,
 ) -> list[Path]:
     """

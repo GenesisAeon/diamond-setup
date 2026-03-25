@@ -1,6 +1,8 @@
 """Minimal template — clean, modern Python project for anyone."""
 
-TEMPLATE: dict = {
+from diamond_setup._types import TemplateDict
+
+TEMPLATE: TemplateDict = {
     "name": "minimal",
     "description": "Clean, modern Python project with uv, ruff, pytest and CI",
     "variables": ["name", "description", "author", "python_version"],
