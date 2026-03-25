@@ -4,10 +4,11 @@ on:
   push:
     branches: [main, master]
   pull_request:
+    branches: [main, master]
 
 jobs:
-  test:
-    name: Test (Python ${{ matrix.python-version }})
+  quality:
+    name: Quality (Python ${{ matrix.python-version }})
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -28,14 +29,17 @@ jobs:
       - name: Install dependencies
         run: uv sync --extra dev
 
-      - name: Lint (ruff)
+      - name: Ruff lint
         run: uv run ruff check .
 
-      - name: Format check (ruff)
+      - name: Ruff format check
         run: uv run ruff format --check .
 
-      - name: Run tests
-        run: uv run pytest
+      - name: Mypy typecheck
+        run: uv run mypy src --config-file pyproject.toml
+
+      - name: Pytest + Coverage
+        run: uv run pytest --cov=diamond_setup --cov-report=term-missing --cov-fail-under=90
 
   docs:
     name: Build docs

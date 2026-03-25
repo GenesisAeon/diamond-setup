@@ -2,6 +2,8 @@
 
 import copy
 
+from diamond_setup._types import TemplateDict
+
 from .minimal import TEMPLATE as MINIMAL_TEMPLATE
 
 _extra_files = {
@@ -69,7 +71,7 @@ def export_to_entropy_table(
 """,
 }
 
-_genesis: dict = copy.deepcopy(MINIMAL_TEMPLATE)
+_genesis: TemplateDict = copy.deepcopy(MINIMAL_TEMPLATE)
 _genesis["name"] = "genesis"
 _genesis["description"] = "GenesisAeon project with domain/metrics YAML and entropy-table bridge"
 _genesis["variables"] = MINIMAL_TEMPLATE["variables"] + ["metrics"]
@@ -79,4 +81,4 @@ _genesis["defaults"] = {
 }
 _genesis["files"] = {**MINIMAL_TEMPLATE["files"], **_extra_files}
 
-TEMPLATE: dict = _genesis
+TEMPLATE: TemplateDict = _genesis
