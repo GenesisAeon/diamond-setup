@@ -1,4 +1,4 @@
-﻿[project]
+[project]
 name = "diamond-setup"
 version = "1.0.0"
 description = "Universal Python project scaffold â€” generate professional project skeletons in seconds"
