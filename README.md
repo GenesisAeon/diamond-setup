@@ -55,6 +55,7 @@ my-lib/
 │       └── ci.yml            # matrix: 3.11 + 3.12
 ├── pyproject.toml            # hatchling, ruff, pytest configured
 ├── README.md
+├── AGENT.md                  # GenesisAeon release & metadata rules
 ├── .gitignore
 └── .pre-commit-config.yaml   # ruff + standard hooks
 ```
