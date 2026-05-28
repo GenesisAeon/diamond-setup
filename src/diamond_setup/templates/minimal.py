@@ -136,7 +136,8 @@ jobs:
 1. **.zenodo.json**
    - Aktualisiere `version`, `description`, `keywords`, `related_identifiers`
    - Beschreibung muss die aktuelle Funktion des Packages klar beschreiben
-   - Immer den Whitepaper-DOI (10.5281/zenodo.19645351) als `isPartOf` oder `isDocumentedBy` eintragen
+   - Immer den Whitepaper-DOI (10.5281/zenodo.19645351) als `isPartOf` oder
+     `isDocumentedBy` eintragen
 
 2. **README.md**
    - Aktualisiere Whitepaper-Badge auf aktuelle Version
