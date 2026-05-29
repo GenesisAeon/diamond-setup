@@ -38,6 +38,25 @@ def test_scaffold_genesis(tmp_path):
     assert (tmp_path / "my-genesis" / "domains.yaml").exists()
 
 
+def test_scaffold_includes_agent_md_minimal(tmp_path):
+    result = runner.invoke(app, ["scaffold", "agent-min", "--output-dir", str(tmp_path)])
+    assert result.exit_code == 0, result.output
+    agent = tmp_path / "agent-min" / "AGENT.md"
+    assert agent.exists()
+    content = agent.read_text(encoding="utf-8")
+    assert "GenesisAeon Release & Metadata Rules" in content
+    assert "10.5281/zenodo.19645351" in content
+
+
+def test_scaffold_includes_agent_md_genesis(tmp_path):
+    result = runner.invoke(
+        app,
+        ["scaffold", "agent-gen", "--template", "genesis", "--output-dir", str(tmp_path)],
+    )
+    assert result.exit_code == 0, result.output
+    assert (tmp_path / "agent-gen" / "AGENT.md").exists()
+
+
 def test_scaffold_unknown_template():
     result = runner.invoke(app, ["scaffold", "x", "--template", "nonexistent"])
     assert result.exit_code != 0
