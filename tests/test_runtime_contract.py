@@ -6,7 +6,6 @@ import subprocess
 import sys
 from pathlib import Path
 
-import pytest
 import yaml
 
 REPO_ROOT = Path(__file__).parent.parent
@@ -15,7 +14,7 @@ VALIDATE_SCRIPT = REPO_ROOT / "scripts" / "validate_runtime.py"
 
 # Importiere validate_runtime direkt für Unit-Tests
 sys.path.insert(0, str(REPO_ROOT / "scripts"))
-from validate_runtime import validate_runtime  # noqa: E402
+from validate_runtime import validate_runtime  # noqa: E402, I001
 
 
 # ── Schema-Dateien vorhanden ─────────────────────────────────────────────────
