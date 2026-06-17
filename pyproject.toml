@@ -1,7 +1,7 @@
 [project]
 name = "diamond-setup"
 version = "1.0.0"
-description = "Universal Python project scaffold â€” generate professional project skeletons in seconds"
+description = "Universal Python project scaffold — generate professional project skeletons in seconds"
 readme = "README.md"
 license = { text = "MIT" }
 authors = [{ name = "GenesisAeon" }]

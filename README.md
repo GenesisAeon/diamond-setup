@@ -10,7 +10,7 @@ No cookiecutter, no Jinja2, no magic. Just a clean CLI that produces a fully wor
 
 ---
 
-## Install
+## Installation
 
 ```bash
 pip install diamond-setup
@@ -79,6 +79,21 @@ uv run pytest
 ## Extending
 
 Adding a new template is one Python file. See [docs/templates.md](docs/templates.md).
+
+## Role in the GenesisAeon Ecosystem
+
+`diamond-setup` is **P-INFRA-1** in the GenesisAeon ecosystem registry —
+the ecosystem infrastructure / template scaffold package. It generates the
+standardized project skeletons (CI, packaging, pre-commit) used to bootstrap
+new GenesisAeon packages, including the `genesis` preset that wires in the
+`entropy-table` bridge.
+
+## Citation
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.PLACEHOLDER.svg)](https://doi.org/10.5281/zenodo.PLACEHOLDER)
+
+DOI will be assigned automatically on first GitHub Release once
+Zenodo–GitHub integration is enabled for this repo.
 
 ---
 
