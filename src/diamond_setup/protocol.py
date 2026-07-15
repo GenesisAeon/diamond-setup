@@ -3,6 +3,9 @@
 Γ (Gamma) is an **attractor property**: numeric values are only valid after at
 least one completed :meth:`run_cycle`. Before that, :meth:`get_crep_state` and
 :meth:`get_utac_state` raise :class:`NotConvergedError`.
+
+Version 2.2.0 adds the optional sixth Diamond method ``get_resilience_state()``
+and the :class:`ResilienceState` Pydantic model for Ρ-quantification.
 """
 
 from __future__ import annotations
@@ -22,6 +25,30 @@ class NotConvergedError(RuntimeError):
             f"(Gamma is an attractor property, not an initial value)."
         )
         self.method = method
+
+
+# Alias used in GenesisAeon documentation (P40/P41)
+NotInitializedError = NotConvergedError
+
+
+class ResilienceState(BaseModel):
+    """Canonical Ρ snapshot returned by ``get_resilience_state()``.
+
+    All fields map directly to the UTAC fixed-point formula::
+
+        Ρ = |λ*| · (1 - Γ/Γ_max) · (1 - Σ|C_ij|/C_critical)
+    """
+
+    rho: float = Field(ge=0.0, description="System resilience Ρ ∈ [0, ∞)")
+    lambda_star: float = Field(ge=0.0, description="|λ*| = r·tanh²(σΓ)")
+    recovery_time: float = Field(ge=0.0, description="τ ≈ 1/|λ*| in system time units")
+    criticality_margin: float = Field(ge=0.0, le=1.0, description="1 - Γ/Γ_max")
+    coupling_load: float = Field(ge=0.0, le=1.0, description="Σ|C_ij|/C_critical")
+    near_collapse: bool = Field(description="True when Ρ < σ_Φ ≈ 0.0625")
+    implemented: bool = Field(default=True)
+
+    def as_dict(self) -> dict[str, Any]:
+        return self.model_dump()
 
 
 class CREPState(BaseModel):
@@ -122,6 +149,15 @@ class DiamondPackage(ABC):
 
     def to_zenodo_record(self) -> dict[str, Any]:
         return self._build_zenodo_record().as_dict()
+
+    def get_resilience_state(self) -> dict[str, Any]:
+        """Optional sixth Diamond method — system resilience Ρ.
+
+        Returns a dict compatible with :class:`ResilienceState`.
+        The default implementation signals that the method is not implemented;
+        packages that depend on ``resilience-core`` should override this.
+        """
+        return {"rho": None, "implemented": False}
 
     def _require_converged(self, method: str) -> None:
         if self._cycles_completed < 1:
