@@ -39,12 +39,12 @@ class ResilienceState(BaseModel):
         Ρ = |λ*| · (1 - Γ/Γ_max) · (1 - Σ|C_ij|/C_critical)
     """
 
-    rho: float = Field(ge=0.0, description="System resilience Ρ ∈ [0, ∞)")
-    lambda_star: float = Field(ge=0.0, description="|λ*| = r·tanh²(σΓ)")
-    recovery_time: float = Field(ge=0.0, description="τ ≈ 1/|λ*| in system time units")
-    criticality_margin: float = Field(ge=0.0, le=1.0, description="1 - Γ/Γ_max")
-    coupling_load: float = Field(ge=0.0, le=1.0, description="Σ|C_ij|/C_critical")
-    near_collapse: bool = Field(description="True when Ρ < σ_Φ ≈ 0.0625")
+    rho: float | None = Field(default=None, ge=0.0)
+    lambda_star: float | None = Field(default=None, ge=0.0)
+    recovery_time: float | None = Field(default=None, ge=0.0)
+    criticality_margin: float | None = Field(default=None, ge=0.0, le=1.0)
+    coupling_load: float | None = Field(default=None, ge=0.0, le=1.0)
+    near_collapse: bool | None = Field(default=None)
     implemented: bool = Field(default=True)
 
     def as_dict(self) -> dict[str, Any]:
