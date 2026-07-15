@@ -31,7 +31,7 @@ class NotConvergedError(RuntimeError):
 NotInitializedError = NotConvergedError
 
 
-class ResilienceState(BaseModel):
+class ResilienceState(BaseModel):  # type: ignore[misc]
     """Canonical Ρ snapshot returned by ``get_resilience_state()``.
 
     All fields map directly to the UTAC fixed-point formula::
@@ -48,7 +48,7 @@ class ResilienceState(BaseModel):
     implemented: bool = Field(default=True)
 
     def as_dict(self) -> dict[str, Any]:
-        return self.model_dump()
+        return self.model_dump()  # type: ignore[no-any-return]
 
 
 class CREPState(BaseModel):
