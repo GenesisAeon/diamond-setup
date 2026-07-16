@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [2.2.0] - 2026-07-16
+### Added
+- `ResilienceState` Pydantic model — canonical Ρ snapshot (`rho`, `lambda_star`,
+  `recovery_time`, `criticality_margin`, `coupling_load`, `near_collapse`).
+- `DiamondPackage.get_resilience_state()` — optional sixth Diamond method.
+  Default implementation returns `{"rho": None, "implemented": False}`;
+  packages built on `resilience-core` override it (see `resilience-core`
+  P40 and `scope-resilience` P41).
+- `NotInitializedError` — alias for `NotConvergedError`, used in
+  GenesisAeon P40/P41 documentation.
+- `.github/workflows/diamond-validation.yml` — Diamond Protocol self-check
+  CI job, running on every push/PR to validate protocol conformance.
+
 ## [2.1.0] - 2026-07-01
 ### Added
 - `diamond_setup.protocol.DiamondPackage` — canonical ABC for the five-method
